@@ -7,14 +7,18 @@ class PhaseShifting(StructuredLight):
         self.F = F
         self.width = None
     
-    def generate(self, dsize):
+    def generate(self, dsize, intensity):
         width, height = dsize
+        if intensity < 0:
+            intensity = 0
+        elif intensity > 255:
+            intensity = 255
         num = self.num
         self.width= width
 
         w = 2*np.pi/width * self.F
 
-        imgs_code = (255*np.fromfunction(lambda y,x,n: 0.5*(np.cos(w*x + 2*np.pi*n/num) + 1), (height,width,num), dtype=float)).astype(np.uint8)
+        imgs_code = (intensity * np.fromfunction(lambda y,x,n: 0.5*(np.cos(w*x + 2*np.pi*n/num) + 1), (height,width,num), dtype=float)).astype(np.uint8)
         
         imlist = self.split(imgs_code)
         return imlist

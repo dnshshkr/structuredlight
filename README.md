@@ -11,7 +11,7 @@ Currently supports
 
 ## Installation
 ```sh
-pip install git+https://github.com/elerac/structuredlight
+pip install git+https://github.com/dnshshkr/structuredlight
 ```
 
 ## Usage
